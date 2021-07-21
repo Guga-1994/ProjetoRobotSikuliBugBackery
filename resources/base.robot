@@ -1,21 +1,30 @@
 * Settings *
-Documentation       Tudo deve começar por aqui
+Documentation            Tudo deve começar por aqui
 
-Library         SikuliLibrary
+#biblioteca responsável pela a integração do sikuli com o robot
+Library        SikuliLibrary 
 
-Resource        actions/pdv.robot
+Resource    actions/pdv.robot
 
-* Keywords *
+#essa parte indica quais serão as palavras chaves usadas pela biblioteca do sikuli em integração com  o robotframework
+#essas palavras chaves estão descritas na documentação da biblioteca. 
+* Keywords * 
+#(o EXECDIR é a variável que traz o diretorio de execução do projeto(o raíz), mas tem que completar o caminho)
 Carrega os Elementos do App
     Add Image Path      ${EXECDIR}\\resources\\elements
 
-Inicia Sessão
+#chama a keyword que carrega os elementos do app, e manda um evento de click no icone do programa 
+Iniciar Sessão
     Carrega os Elementos do App
-    Click           icone-app.png
+    Sleep  5
+    click         icone-app.png
 
+#chama a keyword "Stop Remote Server", essa keyword vai parar o servidor do sikuli que faz a interação entre o robot e a api do sikuli
 Encerrar Sessão
     Stop Remote Server
 
-Finaliza Teste
+#gera uma evidencia do teste tirando um print da tela 
+Finalizar Teste
     Capture Screen
-    Close Application       BugBakery
+    #só fecha a aplicação se for passado o nome dela, logo é interessante ver no gerenciador de tarefas, como está o nome do programa
+    Close Application   BugBakery
